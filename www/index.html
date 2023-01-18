@@ -32,31 +32,31 @@
                 })
         }
 
-        function searchLevel() {
-            let level = parseInt($("#level").val());
+        function searchRarity() {
+            let rarity = parseInt($("#rarity").val());
             let TestDataClass = ncmb.DataStore(db);
-            TestDataClass.equalTo("level", level).fetchAll()
+            TestDataClass.equalTo("rarity", rarity).fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
         }
 
-        function searchLevelLT() {
-            let level = parseInt($("#level").val());
+        function searchRarityLT() {
+            let rarity = parseInt($("#rarity").val());
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .lessThan("level", level)
+                .lessThan("rarity", rarity)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
         }
 
-        function searchLevelGT() {
-            let level = parseInt($("#level").val(), 10);
+        function searchRarityGT() {
+            let rarity = parseInt($("#rarity").val(), 10);
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .greaterThan("level", level)
+                .greaterThan("rarity", rarity)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
@@ -65,7 +65,7 @@
 
         function showResults(results) {
             // テーブルのヘッダを生成
-            let msg = "<table><tr><th>name</th><th>rearity</th><th>chapter</th><th>difficulty</th></tr>";
+            let msg = "<table><tr><th>name</th><th>rarity</th><th>chapter</th><th>difficulty</th></tr>";
             for (let i = 0; i < results.length; i++) {
                 // 各データを収めた表の列を生成
                 msg += "<tr>";
@@ -89,16 +89,16 @@
         <input id="name" type="text" placeholder="monster name">
     </div>
     <div>
-        <label for="level">level:</label>
-        <input id="level" type="number" placeholder="monster level">
+        <label for="rarity">rarity:</label>
+        <input id="rarity" type="number" placeholder="monster rarity">
     </div>
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
         <br>
-        <button class="btn" onclick="searchLevelLT()">Level &lt</button>
-        <button class="btn" onclick="searchLevel()">Level</button>
-        <button class="btn" onclick="searchLevelGT()">Level &gt</button>
+        <button class="btn" onclick="searchRarityLT()">rarity &lt</button>
+        <button class="btn" onclick="searchRarity()">rarity</button>
+        <button class="btn" onclick="searchRarityGT()">rarity &gt</button>
     </div>
     <div id="message">message area</div>
 </body>
