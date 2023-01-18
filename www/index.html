@@ -63,6 +63,15 @@
                 })
         }
 
+        function searchChapter() {
+            let chapter = parseInt($("#chapter").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.equalTo("chapter", chapter).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function showResults(results) {
             // テーブルのヘッダを生成
             let msg = "<table><tr><th>name</th><th>rarity</th><th>chapter</th><th>difficulty</th></tr>";
@@ -92,6 +101,10 @@
         <label for="rarity">rarity:</label>
         <input id="rarity" type="number" placeholder="monster rarity">
     </div>
+    <div>
+        <label for="chapter">chapter:</label>
+        <input id="chapter" type="number" placeholder="monster chapter">
+    </div>
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
@@ -99,6 +112,8 @@
         <button class="btn" onclick="searchRarityLT()">rarity &lt</button>
         <button class="btn" onclick="searchRarity()">rarity</button>
         <button class="btn" onclick="searchRarityGT()">rarity &gt</button>
+        <br>
+        <button class="btn" onclick="searchChapter()">chapter</button>
     </div>
     <div id="message">message area</div>
 </body>
