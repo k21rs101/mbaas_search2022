@@ -72,6 +72,15 @@
                 })
         }
 
+        function searchDifficulty() {
+            let difficulty = $("#difficulty").val();
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass.equalTo("difficulty", difficulty).fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function showResults(results) {
             // テーブルのヘッダを生成
             let msg = "<table><tr><th>name</th><th>rarity</th><th>chapter</th><th>difficulty</th></tr>";
@@ -105,15 +114,20 @@
         <label for="chapter">chapter:</label>
         <input id="chapter" type="number" placeholder="monster chapter">
     </div>
+    <div>
+        <label for="difficulty">difficulty:</label>
+        <input id="difficulty" type="text" placeholder="monster difficulty">
+    </div>
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
         <br>
-        <button class="btn" onclick="searchRarityLT()">rarity &lt</button>
-        <button class="btn" onclick="searchRarity()">rarity</button>
-        <button class="btn" onclick="searchRarityGT()">rarity &gt</button>
+        <button class="btn" onclick="searchRarityLT()">Rarity &lt</button>
+        <button class="btn" onclick="searchRarity()">Rarity</button>
+        <button class="btn" onclick="searchRarityGT()">Rarity &gt</button>
         <br>
-        <button class="btn" onclick="searchChapter()">chapter</button>
+        <button class="btn" onclick="searchChapter()">Chapter</button>
+        <button class="btn" onclick="searchDifficulty()">Difficulty</button>
     </div>
     <div id="message">message area</div>
 </body>
